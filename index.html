@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Chamando cliente...</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Chamando o cliente...</h1>
+  <audio id="audio" autoplay></audio>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const audioUrl = urlParams.get("audio");
+
+    if (audioUrl) {
+      const audio = document.getElementById("audio");
+      audio.src = audioUrl;
+      audio.play();
+
+      // Fechar aba após 7 segundos (ajuste se quiser)
+      setTimeout(() => {
+        window.close();
+      }, 7000);
+    } else {
+      document.body.innerHTML = "<h2>⚠️ Link do áudio não foi informado.</h2>";
+    }
+  </script>
+</body>
+</html>
