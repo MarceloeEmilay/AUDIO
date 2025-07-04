@@ -1,17 +1,32 @@
-<audio id="audio" autoplay>
-  <source id="src" src="" type="audio/mpeg">
-</audio>
-<script>
-  const audio = document.getElementById("audio");
-  const source = document.getElementById("src");
-  const url = new URL(window.location.href);
-  const audioUrl = url.searchParams.get("audio");
-  if (audioUrl) {
-    source.src = audioUrl;
-    audio.load();
-    audio.play();
-  }
-  setTimeout(() => {
-    window.close(); // fecha a aba após 7 segundos
-  }, 7000);
-</script>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Áudio automático</title>
+</head>
+<body style="display:flex;justify-content:center;align-items:center;height:100vh;background-color:#f7f7f7;font-family:sans-serif;">
+  <h2>Tocando áudio...</h2>
+  <audio id="audio" autoplay>
+    <source id="src" src="" type="audio/mpeg">
+    Seu navegador não suporta áudio.
+  </audio>
+
+  <script>
+    const audio = document.getElementById("audio");
+    const source = document.getElementById("src");
+    const params = new URLSearchParams(window.location.search);
+    const audioUrl = params.get("audio");
+
+    if (audioUrl) {
+      source.src = audioUrl;
+      audio.load();
+      audio.play();
+    }
+
+    // Aguarda 7 segundos e redireciona para página em branco
+    setTimeout(() => {
+      window.location.href = "about:blank";
+    }, 7000);
+  </script>
+</body>
+</html>
